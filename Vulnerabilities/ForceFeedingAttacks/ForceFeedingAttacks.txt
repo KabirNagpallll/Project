@@ -1,1 +1,11 @@
+These attacks exploit the fact that developers cannot prevent a smart contract from receiving Ether. By transferring Ether to any contract, the attacker can change the contract's balance and manipulate any function logic that relies on the expected balance.
 
+let's consider a more complex example involving a vault contract that pays out a reward when the total deposited Ether exceeds a certain limit. This contract is susceptible to a force-feeding attack because it relies on the contract's internal balance for critical logic.
+
+In this contract, users can deposit Ether until the total deposited reaches the limit. The last person to deposit can then withdraw a reward equal to the excess Ether beyond the limit.
+
+However, an attacker can force-feed Ether into the contract by creating a new contract that inherits from RewardVault and overrides the deposit function. This new contract can accept Ether and then transfer it to the RewardVault contract, increasing its balance and potentially manipulating the withdrawReward function.
+
+In this attacker contract, the receive function is called whenever Ether is sent to the contract. This function then calls the deposit function on the RewardVault contract, forcing it to accept the Ether.
+
+This is a force-feeding attack because the attacker is able to manipulate the RewardVault contract's balance by sending Ether to the attacker contract instead of directly to the RewardVault contract.
