@@ -1,1 +1,13 @@
+A race condition, particularly those arising from transaction order dependencies, poses a unique set of challenges. In a sandwich attack, the attacker places a transaction both before and after the target transaction, effectively "sandwiching" the user's transaction and manipulating token prices temporarily.
 
+Let's consider a simple DEX (Decentralized Exchange) contract in Solidity that handles token swaps. The contract has a function swapTokens that allows users to swap tokens with each other.
+
+In this contract, users can deposit tokens and then swap them with others. However, an attacker can exploit a race condition to manipulate the token prices.
+
+Suppose Alice wants to swap her tokens with Bob. She initiates a transaction to swap her tokens, but before this transaction gets mined, the attacker observes it and initiates a transaction to swap his own tokens. Because the attacker's transaction gets processed first due to a higher gas price, he effectively "sandwiches" Alice's transaction.
+
+After Alice's transaction gets processed, the attacker initiates another transaction to swap his tokens back. Now, the price of tokens has been artificially inflated, allowing the attacker to profit from the price difference.
+
+To mitigate this vulnerability, you could implement a mechanism to lock the user's tokens during a swap operation, preventing other users from initiating transactions that could affect the price. However, this approach may not be feasible in all cases, especially in decentralized systems where locks can be expensive and slow down transactions.
+
+Another approach is to use a commit-reveal scheme, where users first commit to their intended operations, and then reveal them in a separate transaction. This prevents other users from observing and reacting to pending transactions. However, this approach increases complexity and can be costly in terms of gas fees.
