@@ -1,1 +1,9 @@
+Reentrancy attacks occur when a smart contract calls an external contract and continues execution before the external call is finished. This can lead to unexpected behavior if the external contract calls back into the original contract.
 
+In this contract, users can deposit Ether and withdraw it. The withdraw function first checks if the user has enough balance, sends the Ether to the user, and then updates the balance.
+
+However, this contract is vulnerable to a reentrancy attack. An attacker can create a malicious contract that calls the withdraw function and then immediately calls it again in the fallback function. This causes the withdraw function to execute twice, draining more Ether from the contract than intended.
+
+In this attacker contract, the attack function deposits Ether into the Bank contract and then calls the withdraw function. The receive function is called when the Bank contract sends Ether back to the attacker contract. If the Bank contract still has enough balance, the receive function calls the withdraw function again, causing the Bank contract to lose more Ether.
+
+To prevent reentrancy attacks, you should follow the Checks-Effects-Interactions pattern, which suggests that you should make any state changes in your contract before calling external contracts. In the case of the Bank contract, you should update the balance before sending the Ether.
