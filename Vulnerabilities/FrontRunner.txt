@@ -1,0 +1,5 @@
+Let's consider a simple smart contract in Solidity that allows users to guess a number. The contract will pay out the entire balance if a user correctly guesses the number.
+In this contract, a user can guess the number by calling the guess function with their number as a parameter. However, before this transaction gets mined and included in a block, it becomes visible in the mempool. An attacker can observe this transaction, copy the transaction data, and resubmit it with a higher gas price. Since the transaction with the higher gas price gets processed first, the attacker wins the game.
+One way to mitigate this vulnerability is to introduce a commit-and-reveal scheme. In this scheme, a user first submits a hash of their guess, and then later reveals their actual guess. This prevents other users from observing the pending transaction and copying it.
+In this updated contract, users first call the commit function with a hash of their guess. They can then reveal their guess by calling the guess function. This prevents attackers from observing the pending transaction in the mempool and copying it.
+
