@@ -1,1 +1,7 @@
+Oracle manipulation is a type of vulnerability in smart contracts where the data fed into the contract by an oracle is incorrect or tampered with. Oracles serve as a bridge between off-chain data sources and on-chain smart contracts, allowing them to access real-world information necessary for decision-making. If an attacker can manipulate the oracle’s data feed, they can mislead the smart contract’s execution and achieve undesired outcomes, such as financial losses or the compromise of critical processes 2.
 
+To illustrate, let's consider a hypothetical scenario. Suppose we have a smart contract that executes a certain action based on the price of a particular asset. The price of this asset is fetched from an oracle. If an attacker manages to manipulate the oracle to report a higher price than actual, the smart contract might execute the action prematurely, leading to potential financial loss.
+
+To mitigate the risk of oracle manipulation, you can use multiple oracles from different trusted sources. Aggregating data from multiple oracles can help identify inconsistencies or outliers. By comparing and verifying the data obtained from various oracles, a smart contract can determine the consensus and make more informed decisions, reducing the impact of a compromised oracle.
+
+However, it's important to note that while this approach increases the security, it doesn't completely eliminate the risk of oracle manipulation. Therefore, it's crucial to thoroughly understand the risks and consider implementing additional security measures.
