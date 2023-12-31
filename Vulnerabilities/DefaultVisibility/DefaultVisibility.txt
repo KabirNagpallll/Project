@@ -1,1 +1,3 @@
+The Default Visibility vulnerability in smart contracts occurs when functions that should be private (only callable within the contract itself) are left without a visibility specifier, making them publicly accessible. This vulnerability can lead to unauthorized access and manipulation of the contract's internal state.
+
 
