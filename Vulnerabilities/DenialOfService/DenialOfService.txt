@@ -1,1 +1,50 @@
+A Denial of Service (DoS) is a type of cyber attack in which a system becomes unavailable due to an overwhelming amount of traffic. In the context of smart contracts, a DoS attack can make a contract unusable or slow down its operation significantly. Here are some common types of DoS attacks on smart contracts:
 
+1) Gas Limit DoS: This type of attack involves causing transactions to consume all available gas within a block, effectively blocking other transactions from being processed. An attacker can achieve this by sending large amounts of data in a transaction, forcing other transactions to wait until the next block.
+
+
+// Example of a transaction consuming a lot of gas
+function expensiveOperation(bytes memory data) public payable {
+   require(msg.value >= 1 ether, "Not enough Ether sent.");
+   // Expensive operation here...
+}
+
+
+In this example, an attacker can send a large amount of data to the expensiveOperation function, causing it to consume a lot of gas and potentially blocking other transactions 3.
+
+2) Block Gas Limit DoS: This type of attack involves creating a situation where the total gas consumed by all transactions in a block exceeds the block gas limit. This makes it impossible for the block to be mined. An attacker can cause this by creating a contract function that requires a large amount of gas and then calling this function repeatedly.
+
+
+// Example of a function that consumes a lot of gas
+function consumeLotsOfGas() public {
+   uint256 i = 0;
+   while (true) {
+       i++;
+   }
+}
+
+
+In this example, the consumeLotsOfGas function will consume all available gas and cause a block gas limit violation 3.
+
+3) Unbounded Loops: This type of attack involves creating a loop in a smart contract function that doesn't have a clear exit condition. This can cause a function to run indefinitely and consume a lot of gas, effectively blocking other transactions.
+
+
+// Example of an unbounded loop
+contract DosContract {
+   uint256[] private _data;
+
+   function addData(uint256[] calldata data) public {
+       for (uint256 i = 0; i < data.length; i++) {
+           _data.push(data[i]);
+       }
+   }
+
+   function getDataLength() public view returns (uint256) {
+       return _data.length;
+   }
+}
+
+
+In this example, the addData function could potentially cause a DoS attack if it's called with a very large array, causing it to run indefinitely and consume a lot of gas 4.
+
+To protect against these types of attacks, developers should avoid writing functions that could consume a lot of gas, ensure that loops have clear exit conditions, and be aware of the block gas limit when writing complex contract functions 3.
