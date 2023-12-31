@@ -1,1 +1,7 @@
+Insecure randomness vulnerability in smart contracts occurs when a smart contract uses a source of randomness that is predictable or can be manipulated. This can happen when a smart contract relies on a deterministic function, such as the block hash or timestamp, to generate random numbers. Since these values are publicly visible on the blockchain, an attacker can predict them and use this knowledge to exploit the smart contract 1.
 
+Let's consider a simple smart contract that uses the block hash to generate a random number between 1 and 100:
+
+In this contract, the generateRandomNumber function first checks that it has not already generated a random number for the current block. If it hasn't, it uses the block hash to generate a random number between 1 and 100. Finally, it stores the current block number so that it can detect if it is called again in the same block 1.
+
+An attacker can exploit this contract by waiting until the contract generates a random number and then using the same block hash to generate the same random number. This is because the block hash is a publicly accessible value on the blockchain, and an attacker can predict it 1.
