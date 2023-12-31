@@ -1,1 +1,9 @@
+To mitigate the risk of unchecked external calls, you can follow several best practices:
 
+1) Use the Checks-Effects-Interactions Pattern: This involves separating the checks and effects from the interactions with other contracts. By performing the necessary checks and updating the contract’s internal state before making any external calls, you can reduce the risk of reentrancy attacks.
+
+2) Implement a Mutex Lock: A mutex lock, also known as a semaphore, can be used to prevent multiple external calls from executing simultaneously. By using a lock mechanism, you can enforce a single entry point for external calls, reducing the risk of reentrancy attacks.
+
+3) Limit External Call Depth: Restrict the depth of external calls to prevent potential recursive attacks. By setting a maximum limit on the number of external calls that can be made within a single transaction or function, you can minimize the risk of unexpected behavior and attacks.
+
+4) Perform Comprehensive Testing: Thoroughly test your contracts to identify and address any vulnerabilities related to unchecked external calls. Use tools and frameworks that facilitate automated testing and analysis of your Solidity code to catch potential issues early on 1.
