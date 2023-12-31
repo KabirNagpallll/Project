@@ -1,1 +1,1 @@
-
+Use Chain Link(API) to generate the random number instead of a deterministic system finding it
