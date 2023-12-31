@@ -1,1 +1,5 @@
+In Solidity, unchecked external calls refer to situations where a contract interacts with another contract without properly validating and handling potential exceptions or errors. This can lead to various security risks, including reentrancy attacks and unexpected behavior 1.
 
+An example of an unchecked external call can be seen in the following Solidity code:
+
+In this contract, the withdrawAll function allows the owner to withdraw all the funds from the contract. However, this function does not check whether the owner address is a contract or not before sending the funds. If the owner is a malicious contract, it could have a fallback function that calls withdrawAll again, leading to a reentrancy attack.
