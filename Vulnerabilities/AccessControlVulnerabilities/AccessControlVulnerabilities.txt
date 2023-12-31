@@ -1,1 +1,10 @@
+1) Unrestricted Initialization Function: This vulnerability occurs when an initialization function does not have any checks to prevent re-initialization. An attacker can call this function to take ownership of the contract, thereby gaining control over its funds and functionalities.
 
+
+
+
+2) Inappropriate Access Control in Token Burning: This vulnerability arises when a token burning function is publicly accessible, allowing any user to burn tokens. An attacker could exploit this to manipulate the token supply, potentially leading to price inflation and draining liquidity pools.
+
+3) Access Control Bypass: This vulnerability can occur when a smart contract developer forgets to guard a DAO control function, allowing anyone to call this function and potentially change DAO rules.
+
+To mitigate these vulnerabilities, developers should carefully design and test their smart contracts. They should rigorously define and enforce access control policies to prevent unauthorized access and actions. By understanding and addressing these vulnerabilities, developers can build more secure and robust smart contracts.
